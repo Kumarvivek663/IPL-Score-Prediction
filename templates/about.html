@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .header {
+            background-color: #00796b;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #ff5722;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #242121;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .navbar ul li a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+        
+        .about-section,
+        .team-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .about-section h2,
+        .team-section h2 {
+            color: #003366;
+            margin-top: 0;
+            font-size: 28px;
+            border-bottom: 2px solid #ff5722;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .about-section p,
+        .team-section p {
+            line-height: 1.6;
+            font-size: 1rem;
+            margin: 15px 0;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .team-member img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .team-member h3 {
+            margin: 0;
+            color: #003366;
+            font-size: 22px;
+        }
+        
+        .team-member p {
+            margin: 5px 0;
+        }
+        
+        .footer {
+            background-color: #00796b;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-top: 5px solid #ff5722;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+            }
+            .navbar ul li {
+                margin: 10px 0;
+            }
+            .team-member {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .team-member img {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>About Us</h1>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/project">Project</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contacts">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="about-section">
+            <h2>IPL Score Prediction Project</h2>
+            <p>The Indian Premier League (IPL) Score Prediction project utilizes advanced machine learning techniques to forecast cricket match outcomes. By analyzing historical match data and various influential factors, the project aims to deliver precise
+                score predictions and valuable insights to teams, analysts, and fans.</p>
+
+            <h3>Objectives</h3>
+            <ul>
+                <li>Predict Match Outcomes: Utilize historical data to forecast results, including win/loss predictions.</li>
+                <li>Estimate Scores: Provide score predictions for innings to understand game dynamics better.</li>
+                <li>Data-Driven Insights: Offer insights based on historical performance to assist in decision-making.</li>
+            </ul>
+
+            <h3>Data</h3>
+            <ul>
+                <li>Match Details: Date, venue, batting, and bowling teams.</li>
+                <li>Player Performance: Runs, wickets, overs, and individual player statistics.</li>
+                <li>Historical Scores: Scores and outcomes of previous matches.</li>
+                <li>Game Context: Venue conditions, weather, and player form.</li>
+            </ul>
+
+            <h3>Methodology</h3>
+            <ul>
+                <li>Data Preprocessing: Clean and prepare data, handle missing values, and encode categorical variables.</li>
+                <li>Feature Engineering: Create relevant features from raw data to improve model performance.</li>
+                <li>Model Selection: Apply algorithms like Linear Regression and Classification Algorithms (e.g., Logistic Regression, Random Forest).</li>
+                <li>Model Training and Evaluation: Train models using historical data and evaluate performance with metrics like accuracy, precision, recall, and F1-score.</li>
+                <li>Deployment: Integrate the model into a web application for real-time predictions.</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <ul>
+                <li>Programming Languages: Python for data processing and model development.</li>
+                <li>Libraries: Pandas, NumPy, Scikit-learn for data manipulation and machine learning; Flask for web development.</li>
+                <li>Web Technologies: HTML, CSS for the user interface.</li>
+            </ul>
+
+            <h3>Features</h3>
+            <ul>
+                <li>Interactive Dashboard: Web interface for inputting match details and receiving predictions.</li>
+                <li>Historical Analysis: Visualizations of past performances and trends.</li>
+                <li>Real-Time Predictions: Updated forecasts based on the latest data.</li>
+            </ul>
+
+            <h3>Challenges and Future Enhancements</h3>
+            <ul>
+                <li>Data Quality: Ensuring accuracy and completeness of historical data.</li>
+                <li>Model Accuracy: Continuously improving predictions with new data and refined algorithms.</li>
+                <li>User Experience: Enhancing the web interface for better interaction and visualization.</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>The IPL Score Prediction project provides an advanced tool for predicting match outcomes and scores. By leveraging extensive historical data, it offers valuable insights that assist teams, analysts, and fans in understanding and anticipating
+                match results.</p>
+        </div>
+
+        <div class="team-section">
+            <h2>Meet the Team</h2>
+
+            <div class="team-member">
+                <img src="/static/profile-image.jpg" alt="Jane Doe">
+                <div>
+                    <h3>Kumar Vivek Santosh</h3>
+                    <p>B.Tech Student In Computer Science</p>
+                    <p>Attended At Arya College Of Engineering, jaipur</p>
+                    <p>Skilled In: C/C++/PYTHON/HTML/CSS AND Machine Learning And Data Science</p>
+
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="/static/kuldeep-profile.jpg" alt="John Smith">
+                <div>
+                    <h3>Kuldeep Singh</h3>
+                    <p>B.Tech Student In Computer Science</p>
+                    <p>Attended At Arya College Of Engineering,jaipur</p>
+                    <p>Skilled In: C/C++/PYTHON/HTML/CSS AND Machine Learning And Data Science</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 IPL Match Prediction. All rights reserved.</p>
+    </div>
+</body>
+
+</html>

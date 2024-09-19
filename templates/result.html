@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-image: url(/static/ipl.jpg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff49;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ffffff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .result {
+            font-size: 1.5em;
+            color: #004d40;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #00796b;
+            border-radius: 8px;
+            background: #e0f2f1;
+        }
+        
+        .result p {
+            margin: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #00796b;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="result">
+            <p>The predicted outcome is: {{ prediction }}</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Your Company
+    </footer>
+</body>
+
+</html>

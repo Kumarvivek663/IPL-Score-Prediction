@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Match Prediction</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-image: url('/static/ipl.jpg');
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #242121;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar ul li a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            padding-top: 20px;
+            background: #ffffffa2;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4d8f84;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        form {
+            padding: 20px;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        input[type="number"],
+        select,
+        input[type="submit"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 5px 0 15px;
+            border-radius: 8px;
+            border: 1px solid #ffffff;
+            font-size: 1em;
+        }
+        
+        select {
+            background-color: #e0f2f1;
+        }
+        
+        input[type="submit"] {
+            background-color: #000000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #004d40;
+        }
+        
+        .result {
+            text-align: center;
+            font-size: 1.2em;
+            color: #00796b;
+            margin-top: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #00796b;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/project">Project</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contacts">Contact</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>IPL Match Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="month">Month:</label>
+            <input type="number" id="month" name="month" required>
+
+            <label for="day">Day:</label>
+            <input type="number" id="day" name="day" required>
+
+            <label for="venue">Venue:</label>
+            <select id="venue" name="venue" required>
+                <option value="Wankhede Stadium">Wankhede Stadium - Mumbai</option>
+                <option value="Eden Gardens">Eden Gardens - Kolkata</option>
+                <option value="M. A. Chidambaram Stadium">M. A. Chidambaram Stadium (Chepauk) - Chennai</option>
+                <option value="M. Chinnaswamy Stadium">M. Chinnaswamy Stadium - Bangalore</option>
+                <option value="Arun Jaitley Stadium">Arun Jaitley Stadium - Delhi</option>
+                <option value="Rajiv Gandhi International Cricket Stadium">Rajiv Gandhi International Cricket Stadium - Hyderabad</option>
+                <option value="Punjab Cricket Association Stadium">Punjab Cricket Association Stadium - Mohali</option>
+                <option value="Sawai Mansingh Stadium">Sawai Mansingh Stadium - Jaipur</option>
+                <option value="Narendra Modi Stadium">Narendra Modi Stadium - Ahmedabad</option>
+                <option value="Birsamunda Cricket Stadium">Birsamunda Cricket Stadium - Ranchi</option>
+                <option value="Dr. DY Patil Stadium">Dr. DY Patil Stadium - Navi Mumbai</option>
+                <option value="Gujarat Cricket Association Stadium">Gujarat Cricket Association Stadium - Gandhinagar</option>
+            </select>
+
+            <label for="bat_team">Batting Team:</label>
+            <select id="bat_team" name="bat_team" onchange="updatePlayers()" required>
+                <option value="Team1">Mumbai Indians (MI)</option>
+                <option value="Team2">Chennai Super Kings (CSK)</option>
+                <option value="Team3">Royal Challengers Bangalore (RCB)</option>
+                <option value="Team4">Delhi Capitals (DC)</option>
+                <option value="Team5">Kolkata Knight Riders (KKR)</option>
+                <option value="Team6">Sunrisers Hyderabad (SRH)</option>
+                <option value="Team7">Rajasthan Royals (RR)</option>
+                <option value="Team8">Punjab Kings (PBKS)</option>
+                <option value="Team9">Gujarat Titans (GT)</option>
+                <option value="Team10">Lucknow Super Giants (LSG)</option>
+            </select>
+
+            <label for="bowl_team">Bowling Team:</label>
+            <select id="bowl_team" name="bowl_team" onchange="updatePlayers()" required>
+                <option value="Team1">Mumbai Indians (MI)</option>
+                <option value="Team2">Chennai Super Kings (CSK)</option>
+                <option value="Team3">Royal Challengers Bangalore (RCB)</option>
+                <option value="Team4">Delhi Capitals (DC)</option>
+                <option value="Team5">Kolkata Knight Riders (KKR)</option>
+                <option value="Team6">Sunrisers Hyderabad (SRH)</option>
+                <option value="Team7">Rajasthan Royals (RR)</option>
+                <option value="Team8">Punjab Kings (PBKS)</option>
+                <option value="Team9">Gujarat Titans (GT)</option>
+                <option value="Team10">Lucknow Super Giants (LSG)</option>
+            </select>
+
+            <label for="batsman">Batsman:</label>
+            <select id="batsman" name="batsman" required>
+            </select>
+
+            <label for="bowler">Bowler:</label>
+            <select id="bowler" name="bowler" required>
+            </select>
+
+            <label for="runs">Runs:</label>
+            <input type="number" id="runs" name="runs" required>
+
+            <label for="wickets">Wickets:</label>
+            <input type="number" id="wickets" name="wickets" required>
+
+            <label for="overs">Overs:</label>
+            <input type="number" id="overs" name="overs" required>
+
+            <label for="runs_last_5">Runs Last 5 Overs:</label>
+            <input type="number" id="runs_last_5" name="runs_last_5" required>
+
+            <label for="wickets_last_5">Wickets Last 5 Overs:</label>
+            <input type="number" id="wickets_last_5" name="wickets_last_5" required>
+
+            <label for="striker">Striker:</label>
+            <input type="number" id="striker" name="striker" required>
+
+            <label for="non_striker">Non-Striker:</label>
+            <input type="number" id="non_striker" name="non_striker" required>
+
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2024 IPL Match Prediction
+    </footer>
+
+    <script>
+        const players = {
+            'Team1': {
+                batsmen: ['Rohit Sharma', 'Quinton de Kock', 'Suryakumar Yadav', 'Hardik Pandya', 'Ishan Kishan', 'Kieron Pollard'],
+                bowlers: ['Jasprit Bumrah', 'Trent Boult', 'Rahul Chahar', 'Krunal Pandya']
+            },
+            'Team2': {
+                batsmen: ['MS Dhoni', 'Ruturaj Gaikwad', 'Moeen Ali', 'Ambati Rayudu', 'Deepak Chahar'],
+                bowlers: ['Deepak Chahar', 'Josh Hazlewood', 'Shane Watson', 'Lungi Ngidi']
+            },
+            'Team3': {
+                batsmen: ['Virat Kohli', 'AB de Villiers', 'Glenn Maxwell', 'Devdutt Padikkal', 'Rajat Patidar'],
+                bowlers: ['Yuzvendra Chahal', 'Mohammed Siraj', 'Kyle Jamieson', 'Harshal Patel']
+            },
+            'Team4': {
+                batsmen: ['Rishabh Pant', 'Shikhar Dhawan', 'Prithvi Shaw', 'Shreyas Iyer', 'Marcus Stoinis'],
+                bowlers: ['Kagiso Rabada', 'Anrich Nortje', 'Avesh Khan', 'R Ashwin']
+            },
+            'Team5': {
+                batsmen: ['Eoin Morgan', 'Shubman Gill', 'Andre Russell', 'Dinesh Karthik', 'Nitish Rana'],
+                bowlers: ['Pat Cummins', 'Sunil Narine', 'Prasidh Krishna', 'Sandeep Warrier']
+            },
+            'Team6': {
+                batsmen: ['David Warner', 'Jonny Bairstow', 'Kane Williamson', 'Manish Pandey', 'Rashid Khan'],
+                bowlers: ['Rashid Khan', 'Bhuvneshwar Kumar', 'Sandeep Sharma', 'T Natarajan']
+            },
+            'Team7': {
+                batsmen: ['Steve Smith', 'Ben Stokes', 'Sanju Samson', 'Jos Buttler', 'Chris Morris'],
+                bowlers: ['Jofra Archer', 'Kartik Tyagi', 'Shreyas Gopal', 'Mustafizur Rahman']
+            },
+            'Team8': {
+                batsmen: ['KL Rahul', 'Chris Gayle', 'Mayank Agarwal', 'Nicholas Pooran', 'Dinesh Karthik'],
+                bowlers: ['Mohammed Shami', 'Ravi Bishnoi', 'Chris Jordan', 'Arshdeep Singh']
+            },
+            'Team9': {
+                batsmen: ['Hardik Pandya', 'Shubman Gill', 'Ruturaj Gaikwad', 'David Willey', 'Abhinav Manohar'],
+                bowlers: ['Rashid Khan', 'Lockie Ferguson', 'Mohammed Shami', 'Yash Dayal']
+            },
+            'Team10': {
+                batsmen: ['KL Rahul', 'Quinton de Kock', 'Deepak Hooda', 'Krishnappa Gowtham', 'Marcus Stoinis'],
+                bowlers: ['Ravi Bishnoi', 'Mohsin Khan', 'Amit Mishra', 'Dushmantha Chameera']
+            }
+        };
+
+        function updatePlayers() {
+            const batTeam = document.getElementById('bat_team').value;
+            const bowlTeam = document.getElementById('bowl_team').value;
+
+            const batsmanSelect = document.getElementById('batsman');
+            const bowlerSelect = document.getElementById('bowler');
+
+            batsmanSelect.innerHTML = '';
+            bowlerSelect.innerHTML = '';
+
+            if (players[batTeam] && players[batTeam].batsmen) {
+                players[batTeam].batsmen.forEach(player => {
+                    const option = document.createElement('option');
+                    option.value = player;
+                    option.textContent = player;
+                    batsmanSelect.appendChild(option);
+                });
+            }
+
+            if (players[bowlTeam] && players[bowlTeam].bowlers) {
+                players[bowlTeam].bowlers.forEach(player => {
+                    const option = document.createElement('option');
+                    option.value = player;
+                    option.textContent = player;
+                    bowlerSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
